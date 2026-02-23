@@ -1,3 +1,3 @@
 export { AdventureFeaturesSection } from "./components/AdventureFeaturesSection";
 export { HeroBanner } from "./HeroBanner";
-export { PreviewCardsSection } from "./components/PreviewCardsSection";
+export { ToursParallaxSection } from "./components/ToursParallaxSection";
