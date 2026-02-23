@@ -18,19 +18,19 @@ export function HeroContent() {
           Experience the magic of salt landscapes on our exclusive tours
         </span>
       </p>
-      <div className="mt-8">
-        <Link
-          href="#tours"
-          className="block w-fit [&_button]:pointer-events-none"
+      <div className="mt-8">  
+        <ButtonBase
+          size="large"
+          className="font-rem font-medium !bg-primary !text-cream shadow-black !text-xl"
         >
-          <ButtonBase
-            size="large"
-            className="font-rem font-medium !bg-primary !text-cream shadow-black !text-xl"
+          <Link
+            href="#tours"
+            className="flex items-center gap-2 w-fit"
           >
             <CompassIcon className="h-6 w-6 shrink-0 text-cream md:h-7 md:w-7" />
             Explore Routes
-          </ButtonBase>
-        </Link>
+          </Link>
+        </ButtonBase>
       </div>
     </div>
   );
