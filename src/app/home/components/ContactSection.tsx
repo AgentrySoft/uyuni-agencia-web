@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "motion/react";
 import { ButtonBase } from "@/app/common/components/ButtonBase";
 import { ContactFormIcon } from "./icons";
 import { HeroSeparator } from "./HeroSeparator";
+import { viewportOnce } from "@/app/common/lib/motion-variants";
 
 const WHATSAPP_NUMBER = "59179413052";
 
@@ -11,6 +13,26 @@ function buildWhatsAppMessage(name: string, description: string): string {
   const threeWords = description.trim().split(/\s+/).slice(0, 3).join(" ");
   return `Hola soy ${name} ${threeWords}..., quiero mi sitio web de turismo!`;
 }
+
+const easeOut = [0.22, 1, 0.36, 1] as const;
+const titleReveal = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+};
+
+const formReveal = {
+  hidden: { opacity: 0, y: 48, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, delay: 0.1, ease: easeOut },
+  },
+};
 
 export function ContactSection() {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -35,13 +57,23 @@ export function ContactSection() {
         backgroundPosition: "right center",
       }}
     >
-      {/* Título: Contact Us, centrado, blanco, 64px */}
-      <h2 className="relative z-10 mb-10 text-center font-inter text-[64px] font-extrabold text-white">
+      <motion.h2
+        className="relative z-10 mb-10 text-center font-inter text-[64px] font-extrabold text-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={titleReveal}
+      >
         Contact Us
-      </h2>
+      </motion.h2>
 
-      {/* Contenedor del formulario: centrado */}
-      <div className="relative z-10 flex w-full max-w-lg justify-center">
+      <motion.div
+        className="relative z-10 flex w-full max-w-lg justify-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={formReveal}
+      >
         <form
           onSubmit={handleSubmit}
           className="w-full rounded-2xl bg-card-bg p-6 shadow-lg md:p-8"
@@ -91,7 +123,7 @@ export function ContactSection() {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
       <HeroSeparator className="!absolute bottom-0 w-full" />
     </section>
   );

@@ -1,3 +1,4 @@
+import { ScrollProgressBar } from "@/app/common/components/ScrollProgressBar";
 import {
   AdventureFeaturesSection,
   ContactSection,
@@ -10,6 +11,7 @@ import {
 export default function Home() {
   return (
     <div className="min-h-screen bg-cream">
+      <ScrollProgressBar />
       <HeroBanner />
       <AdventureFeaturesSection />
       <ToursParallaxSection />

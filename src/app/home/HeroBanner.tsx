@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { HeroNavbar } from "./components/HeroNavbar";
 import { HeroContent } from "./components/HeroContent";
 import { HeroSeparator } from "./components/HeroSeparator";
@@ -8,7 +11,12 @@ export function HeroBanner() {
     <section className="relative w-full overflow-hidden bg-primary">
       {/* Bloque hero: altura máxima 70svh */}
       <div className="relative max-h-[calc(80svh+100px)] min-h-0 overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Image
             src="/images/salar-de-uyuni-bo.webp"
             alt="Salar de Uyuni"
@@ -17,7 +25,7 @@ export function HeroBanner() {
             priority
             sizes="100vw"
           />
-        </div>
+        </motion.div>
 
         <HeroNavbar />
 
