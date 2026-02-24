@@ -5,6 +5,7 @@ export { HeroContent } from "./HeroContent";
 export { HeroNavbar } from "./HeroNavbar";
 export { HeroSeparator } from "./HeroSeparator";
 export { ContactSection } from "./ContactSection";
+export { Footer } from "./Footer";
 export { OurPackagesSection } from "./OurPackagesSection";
 export { SectionSeparator } from "./SectionSeparator";
 export { ToursParallaxSection } from "./ToursParallaxSection";

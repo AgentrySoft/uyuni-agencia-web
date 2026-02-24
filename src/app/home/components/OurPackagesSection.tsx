@@ -16,6 +16,7 @@ import { OUR_PACKAGES } from "@/app/home/content/our-packages-content";
 export function OurPackagesSection() {
   return (
     <section
+      id="packages"
       className="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url(/images/uyuni-people-jump-bo.jpg)",

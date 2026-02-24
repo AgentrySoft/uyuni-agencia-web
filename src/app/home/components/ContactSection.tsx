@@ -28,6 +28,7 @@ export function ContactSection() {
 
   return (
     <section
+      id="contact"
       className="relative flex min-h-[80vh] w-full flex-col items-center justify-start overflow-hidden bg-cover bg-no-repeat px-6 py-16 md:py-20"
       style={{
         backgroundImage: "url(/images/contact.jpg)",
