@@ -46,3 +46,21 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter);
 }
+
+/* Split text animation: cada letra con delay escalonado */
+@keyframes split-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.split-char {
+  display: inline-block;
+  animation: split-text-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}

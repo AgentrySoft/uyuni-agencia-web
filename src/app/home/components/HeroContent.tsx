@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ButtonBase } from "@/app/common/components/ButtonBase";
 import { CompassIcon } from "./CompassIcon";
+import { SplitText } from "./SplitText";
 
 export function HeroContent() {
   return (
@@ -9,9 +10,12 @@ export function HeroContent() {
         <span className="font-playfair text-2xl font-bold text-primary-dark md:text-3xl">
           <span>Explore the infinite beauty of</span>
         </span>
-        <span className="font-rem text-5xl font-extrabold uppercase tracking-tight text-primary md:text-8xlxl lg:text-9xl">
+        <SplitText
+          className="font-rem text-5xl font-extrabold uppercase tracking-tight text-primary md:text-8xl lg:text-9xl"
+          delayPerChar={80}
+        >
           UYUNI
-        </span>
+        </SplitText>
       </h1>
       <p className="mt-4 max-w-md font-playfair text-lg font-bold text-primary-dark md:text-xl">
         <span className="inline-block rounded-2xl bg-cream/30 backdrop-blur-sm p-2">
