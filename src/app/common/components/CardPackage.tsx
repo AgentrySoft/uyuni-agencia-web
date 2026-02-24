@@ -44,7 +44,7 @@ export function CardPackageImage({ src, alt, icon, className }: CardPackageImage
       {/* Contenedor circular: la imagen se recorta en círculo */}
       <div className="absolute bottom-0 -left-8 h-[700px] w-[700px] overflow-hidden rounded-full">
         <div className="absolute bottom-0 left-0 h-[300px] w-full">
-          <div className="relative h-full w-full">
+          <div className="relative h-full w-[60%] left-8">
             <Image
               src={src}
               alt={alt}

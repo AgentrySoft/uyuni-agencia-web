@@ -4,5 +4,6 @@ export { FeatureCard } from "./FeatureCard";
 export { HeroContent } from "./HeroContent";
 export { HeroNavbar } from "./HeroNavbar";
 export { HeroSeparator } from "./HeroSeparator";
+export { OurPackagesSection } from "./OurPackagesSection";
 export { SectionSeparator } from "./SectionSeparator";
 export { ToursParallaxSection } from "./ToursParallaxSection";
