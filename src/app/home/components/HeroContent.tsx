@@ -39,14 +39,14 @@ export function HeroContent() {
         >
           Explore the infinite beauty of
         </motion.span>
-        <motion.span variants={item}>
+        {/* <motion.span variants={item}> */}
           <SplitText
             className="font-rem text-5xl font-extrabold uppercase tracking-tight text-primary md:text-8xl lg:text-9xl"
-            delayPerChar={80}
+            delayPerChar={100}
           >
             UYUNI
           </SplitText>
-        </motion.span>
+        {/* </motion.span> */}
       </h1>
       <motion.p
         className="mt-4 max-w-md font-playfair text-lg font-bold text-primary-dark md:text-xl"
