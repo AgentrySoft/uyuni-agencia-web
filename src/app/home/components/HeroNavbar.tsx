@@ -3,15 +3,21 @@
 import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import classNames from "classnames";
+import { scrollToHashOnClick } from "@/app/common/lib/scroll-to-hash";
 
 const MAIN_LINKS = [
-  { label: "HOME", href: "#" },
-  { label: "ABOUT US", href: "#" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "#about" },
   { label: "TOURS", href: "#tours" },
-  { label: "CONTACT US", href: "#" },
+  { label: "PACKAGES", href: "#packages" },
+  { label: "CONTACT US", href: "#contact" },
 ] as const;
 
-const SECONDARY_LINKS = [{ label: "CALL NOW", href: "#" }] as const;
+const WHATSAPP_NUMBER = "59179413052";
+const WHATSAPP_MESSAGE = "Hola yo quiero mi sitio web de turismo, quiero más información";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+const SECONDARY_LINKS = [{ label: "CALL NOW", href: WHATSAPP_URL }] as const;
 
 function MenuIcon({ open }: { open: boolean }) {
   if (open) {
@@ -80,6 +86,7 @@ export function HeroNavbar() {
               <li key={label}>
                 <Link
                   href={href}
+                  onClick={(e) => scrollToHashOnClick(e, href)}
                   className={classNames(
                     "font-rem text-sm font-semibold uppercase tracking-wide transition-colors duration-300 hover:opacity-90 md:text-base",
                     navScrolled ? "text-primary" : "text-white"
@@ -93,6 +100,8 @@ export function HeroNavbar() {
               <li key={label}>
                 <Link
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={classNames(
                     "font-rem text-sm font-semibold uppercase tracking-wide transition-colors duration-300 hover:opacity-90 md:text-base",
                     navScrolled ? "text-primary-dark" : "text-cream"
@@ -153,7 +162,10 @@ export function HeroNavbar() {
               <li key={label}>
                 <Link
                   href={href}
-                  onClick={closeMenu}
+                  onClick={(e) => {
+                    scrollToHashOnClick(e, href);
+                    closeMenu();
+                  }}
                   className="block py-3 font-rem text-xl font-semibold uppercase tracking-wide text-primary-dark transition-colors hover:text-primary"
                 >
                   {label}
@@ -170,6 +182,8 @@ export function HeroNavbar() {
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-dark/30" />
                 <Link
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={closeMenu}
                   className="py-2 font-rem text-sm font-medium uppercase tracking-wide text-primary-dark/70 transition-colors hover:text-primary-dark"
                 >

@@ -41,10 +41,22 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter);
+}
+
+/* Evitar que el navbar fijo tape el título al hacer scroll a una sección */
+[id="about"],
+[id="tours"],
+[id="packages"],
+[id="contact"] {
+  scroll-margin-top: 5.5rem;
 }
 
 /* Split text animation: cada letra con delay escalonado */

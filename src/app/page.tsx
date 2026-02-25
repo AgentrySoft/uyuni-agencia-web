@@ -1,4 +1,6 @@
+import { ButtonUp } from "@/app/common/components/ButtonUp";
 import { ScrollProgressBar } from "@/app/common/components/ScrollProgressBar";
+import { ScrollToHash } from "@/app/common/components/ScrollToHash";
 import {
   AdventureFeaturesSection,
   ContactSection,
@@ -10,7 +12,8 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-cream">
+    <div id="top" className="min-h-screen bg-cream">
+      <ScrollToHash />
       <ScrollProgressBar />
       <HeroBanner />
       <AdventureFeaturesSection />
@@ -18,6 +21,7 @@ export default function Home() {
       <OurPackagesSection />
       <ContactSection />
       <Footer />
+      <ButtonUp />
     </div>
   );
 }

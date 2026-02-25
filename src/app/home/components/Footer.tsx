@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { scrollToHashOnClick } from "@/app/common/lib/scroll-to-hash";
 import { staggerContainerFast, viewportOnce } from "@/app/common/lib/motion-variants";
 
 const FOOTER_LINKS = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "About Us", href: "#about" },
+  { label: "Tours", href: "#tours" },
+  { label: "Packages", href: "#packages" },
   { label: "Contact Us", href: "#contact" },
-  { label: "Tours", href: "#packages" },
 ] as const;
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -58,6 +60,7 @@ export function Footer() {
                 <Link
                   key={label}
                   href={href}
+                  onClick={(e) => scrollToHashOnClick(e, href)}
                   className="font-rem text-base font-normal text-primary-dark underline underline-offset-2 transition-opacity hover:opacity-80"
                 >
                   {label}

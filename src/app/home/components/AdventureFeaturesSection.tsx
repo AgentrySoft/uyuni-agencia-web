@@ -12,7 +12,7 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 const viewportScrollTrigger = {
   once: true,
   amount: 0.35,
-  margin: "-400px 0px 0px 0px",
+  margin: "-200px 0px 0px 0px",
 } as const;
 
 const titleVariants = {
@@ -34,7 +34,7 @@ const cardVariants = {
 
 export function AdventureFeaturesSection() {
   return (
-    <section className="relative w-full bg-cream">
+    <section id="about" className="relative w-full bg-cream">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <motion.div
           initial="hidden"
