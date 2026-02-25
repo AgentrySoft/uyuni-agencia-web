@@ -79,5 +79,12 @@ export const staggerContainerFast = {
 /** Viewport: animar una sola vez al entrar */
 export const viewportOnce = { once: true, amount: 0.2 } as const;
 
+/** Viewport: disparar antes (cuando el elemento está más abajo), para secciones que quieren entrada más temprana */
+export const viewportEarlier = {
+  once: true,
+  amount: 0.08,
+  margin: "0px 0px 120px 0px",
+} as const;
+
 /** Viewport: disparar cuando un poco del elemento es visible */
 export const viewportAmount = (amount: number) => ({ once: true, amount } as const);
