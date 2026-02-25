@@ -47,9 +47,9 @@ export function AdventureFeaturesSection() {
             className="text-center font-inter text-3xl font-extrabold text-primary-dark md:text-4xl"
             variants={titleVariants}
           >
-            The perfect adventure awaits.
+            La aventura perfecta te espera.
             <br />
-            We are the best.
+            Somos los mejores.
           </motion.h2>
           <motion.div
             className="mt-12 flex flex-col items-center justify-center gap-10 sm:flex-row sm:gap-8 md:mt-16 md:gap-12"

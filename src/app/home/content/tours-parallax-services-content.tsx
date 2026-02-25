@@ -12,6 +12,8 @@ export type ToursParallaxServiceItem = {
   title: string;
   description: string;
   buttonLabel: string;
+  /** Clave para abrir el modal de servicio (service-modal-content) */
+  modalSlug: string;
 };
 
 export const TOURS_PARALLAX_SERVICES: ToursParallaxServiceItem[] = [
@@ -19,27 +21,30 @@ export const TOURS_PARALLAX_SERVICES: ToursParallaxServiceItem[] = [
     image: "/images/hotels-salt.jpg",
     imageAlt: "Alojamiento cómodo en Uyuni",
     icon: <ComfortableIcon />,
-    title: "Comfortable Accommodation:",
+    title: "Alojamiento cómodo:",
     description:
-      "Enjoy the best hotels and lodging, carefully selected for your comfort.",
-    buttonLabel: "See Hotels",
+      "Disfruta de los mejores hoteles y alojamientos, seleccionados para tu comodidad.",
+    buttonLabel: "Ver hoteles",
+    modalSlug: "alojamiento-comodo",
   },
   {
     image: "/images/transport.jpg",
     imageAlt: "Transporte seguro y confiable",
     icon: <SafeTransportIcon />,
-    title: "Safe & Reliable Transportation:",
+    title: "Transporte seguro y confiable:",
     description:
-      "Travel with peace of mind in modern, secure vehicles, always at your service.",
-    buttonLabel: "See More",
+      "Viaja con tranquilidad en vehículos modernos y seguros, siempre a tu servicio.",
+    buttonLabel: "Ver más",
+    modalSlug: "transporte-seguro",
   },
   {
     image: "/images/routes.jpeg",
     imageAlt: "Rutas escénicas únicas",
     icon: <UniqueRoutesIcon />,
-    title: "Unique Scenic Routes:",
+    title: "Rutas escénicas únicas:",
     description:
-      "Discover breathtaking landscapes on routes carefully designed for an unforgettable experience.",
-    buttonLabel: "See More",
+      "Descubre paisajes impresionantes en rutas diseñadas para una experiencia inolvidable.",
+    buttonLabel: "Ver más",
+    modalSlug: "rutas-escenicas",
   },
 ];

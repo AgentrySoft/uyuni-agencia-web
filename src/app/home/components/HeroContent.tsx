@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { ButtonBase } from "@/app/common/components/ButtonBase";
 import { CompassIcon } from "./CompassIcon";
 import { SplitText } from "./SplitText";
+import { scrollToHashOnClick } from "@/app/common/lib/scroll-to-hash";
 
 const container = {
   hidden: { opacity: 0 },
@@ -37,23 +38,23 @@ export function HeroContent() {
           className="font-playfair text-2xl font-bold text-primary-dark md:text-3xl"
           variants={item}
         >
-          Explore the infinite beauty of
+          Descubre la belleza infinita de
         </motion.span>
-        {/* <motion.span variants={item}> */}
+        <motion.span variants={item} className="inline-block notranslate" translate="no">
           <SplitText
             className="font-rem text-5xl font-extrabold uppercase tracking-tight text-primary md:text-8xl lg:text-9xl"
             delayPerChar={100}
           >
             UYUNI
           </SplitText>
-        {/* </motion.span> */}
+        </motion.span>
       </h1>
       <motion.p
         className="mt-4 max-w-md font-playfair text-lg font-bold text-primary-dark md:text-xl"
         variants={item}
       >
         <span className="inline-block rounded-2xl bg-cream/30 backdrop-blur-sm p-2">
-          Experience the magic of salt landscapes on our exclusive tours
+          Vive la magia de los paisajes de sal en nuestros tours exclusivos
         </span>
       </motion.p>
       <motion.div className="mt-8" variants={item}>
@@ -63,10 +64,11 @@ export function HeroContent() {
         >
           <Link
             href="#tours"
+            onClick={(e) => scrollToHashOnClick(e, "#tours")}
             className="flex items-center gap-2 w-fit"
           >
             <CompassIcon className="h-6 w-6 shrink-0 text-cream md:h-7 md:w-7" />
-            Explore Routes
+            Ver rutas
           </Link>
         </ButtonBase>
       </motion.div>

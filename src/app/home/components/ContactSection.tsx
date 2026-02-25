@@ -64,7 +64,7 @@ export function ContactSection() {
         viewport={viewportOnce}
         variants={titleReveal}
       >
-        Contact Us
+        Contáctanos
       </motion.h2>
 
       <motion.div
@@ -82,10 +82,10 @@ export function ContactSection() {
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
               <h3 className="font-inter text-[32px] font-extrabold text-[#7E502E]">
-                Leave your details
+                Deja tus datos
               </h3>
               <p className="mt-1 font-inter text-2xl font-extrabold text-[#937A5E]">
-                and we will answer your questions as soon as possible.
+                y te responderemos lo antes posible.
               </p>
             </div>
             <div
@@ -101,14 +101,14 @@ export function ContactSection() {
               ref={nameRef}
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder="Tu nombre"
               required
               className="rounded-xl border-2 border-[#7E502E] bg-white px-4 py-3 font-inter text-primary-dark placeholder:text-description/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
             <textarea
               ref={messageRef}
               name="message"
-              placeholder="Message (ej. tres palabras que te describan)"
+              placeholder="Mensaje (ej. tres palabras que te describan)"
               rows={3}
               className="resize-none rounded-xl border-2 border-[#7E502E] bg-white px-4 py-3 font-inter text-primary-dark placeholder:text-description/70 focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
@@ -118,7 +118,7 @@ export function ContactSection() {
                 size="small"
                 className="font-rem font-medium !bg-primary !text-cream shadow-black !text-xl"
               >
-                Send Message
+                Enviar mensaje
               </ButtonBase>
             </div>
           </div>

@@ -76,3 +76,12 @@ body {
   animation: split-text-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
 }
+
+/* Ocultar la barra superior que inserta Google Translate */
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+}
+body.top {
+  top: 0 !important;
+}

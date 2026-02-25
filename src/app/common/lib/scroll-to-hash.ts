@@ -3,6 +3,10 @@
  * para que siempre se haga scroll aunque la URL ya tenga ese hash (ej. click en "About" estando en /#about).
  */
 export function scrollToHashOnClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if(href === "/") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
   if (!href.startsWith("#")) return;
   e.preventDefault();
   const id = href.slice(1);

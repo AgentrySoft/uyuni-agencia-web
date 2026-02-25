@@ -8,32 +8,37 @@ export type OurPackageItem = {
   title: string;
   destination: string;
   buttonLabel: string;
+  /** Clave para el contenido del modal (package-modal-content) */
+  modalSlug: string;
 };
 
 export const OUR_PACKAGES: OurPackageItem[] = [
   {
     image: "/images/packages/full-day-salt.png",
-    imageAlt: "Full Day Uyuni Salt Flat",
+    imageAlt: "Salar de Uyuni día completo",
     icon: <UniqueRoutesIcon />,
-    title: "Full Day Uyuni Salt Flat",
+    title: "Salar de Uyuni día completo",
     destination: "Uyuni",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "salar-uyuni-dia-completo",
   },
   {
     image: "/images/packages/uyuni-atacama.png",
-    imageAlt: "Uyuni - Atacama Chile Classic",
+    imageAlt: "Uyuni - Atacama Chile clásico",
     icon: <UniqueRoutesIcon />,
-    title: "Uyuni - Atacama Chile Classic",
+    title: "Uyuni - Atacama Chile clásico",
     destination: "Uyuni-Atacama",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "uyuni-atacama-clasico",
   },
   {
     image: "/images/packages/days-in-salt.png",
-    imageAlt: "3 Days 2 Nights Tour with Hotels",
+    imageAlt: "Tour 3 días 2 noches con hoteles",
     icon: <UniqueRoutesIcon />,
-    title: "3 Days 2 Nights Tour with Hotels",
+    title: "Tour 3 días 2 noches con hoteles",
     destination: "Uyuni - Atacama",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "tour-3d-2n-hoteles",
   },
   {
     image: "/images/packages/san-pedro.png",
@@ -41,22 +46,25 @@ export const OUR_PACKAGES: OurPackageItem[] = [
     icon: <UniqueRoutesIcon />,
     title: "Uyuni - San Pedro de Atacama",
     destination: "Uyuni",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "uyuni-san-pedro",
   },
   {
     image: "/images/packages/uyuni-night.png",
-    imageAlt: "Tour Night Uyuni Salt Flat",
+    imageAlt: "Tour nocturno Salar de Uyuni",
     icon: <UniqueRoutesIcon />,
-    title: "Tour Night Uyuni Salt Flat",
+    title: "Tour nocturno Salar de Uyuni",
     destination: "Uyuni",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "tour-nocturno",
   },
   {
     image: "/images/packages/uyuni-sunrise.png",
-    imageAlt: "Stargazing + Sunrise 2 days",
+    imageAlt: "Observación de estrellas + amanecer 2 días",
     icon: <UniqueRoutesIcon />,
-    title: "Stargazing + Sunrise 2 days",
+    title: "Observación de estrellas + amanecer 2 días",
     destination: "Uyuni",
-    buttonLabel: "Show Details",
+    buttonLabel: "Ver detalles",
+    modalSlug: "estrellas-amanecer-2d",
   },
 ];

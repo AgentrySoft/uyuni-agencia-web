@@ -6,11 +6,11 @@ import { scrollToHashOnClick } from "@/app/common/lib/scroll-to-hash";
 import { staggerContainerFast, viewportOnce } from "@/app/common/lib/motion-variants";
 
 const FOOTER_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "#about" },
   { label: "Tours", href: "#tours" },
-  { label: "Packages", href: "#packages" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Paquetes", href: "#packages" },
+  { label: "Contacto", href: "#contact" },
 ] as const;
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -40,9 +40,9 @@ export function Footer() {
             </p>
           </motion.div>
 
-          <motion.div className="text-left" variants={itemReveal}>
+          <motion.div className="text-left notranslate" variants={itemReveal} translate="no">
             <h3 className="font-rem text-lg font-bold text-primary-dark">
-              Address
+              Dirección
             </h3>
             <p className="mt-2 font-rem text-base font-normal text-primary-dark">
               AVENIDA FERROVIARIA S/N
@@ -71,8 +71,9 @@ export function Footer() {
         </div>
 
         <motion.p
-          className="mt-12 border-t border-primary-dark/20 pt-8 text-center font-rem text-base font-normal text-primary-dark"
+          className="mt-12 border-t border-primary-dark/20 pt-8 text-center font-rem text-base font-normal text-primary-dark notranslate"
           variants={itemReveal}
+          translate="no"
         >
           © Copyright, Mi Agencia, Uyuni, Bolivia, 2026
         </motion.p>

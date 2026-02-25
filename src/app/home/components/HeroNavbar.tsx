@@ -4,20 +4,21 @@ import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { scrollToHashOnClick } from "@/app/common/lib/scroll-to-hash";
+import { GoogleTranslateWidget } from "@/app/common/components/GoogleTranslateWidget";
 
 const MAIN_LINKS = [
-  { label: "HOME", href: "/" },
-  { label: "ABOUT US", href: "#about" },
+  { label: "INICIO", href: "/" },
+  { label: "NOSOTROS", href: "#about" },
   { label: "TOURS", href: "#tours" },
-  { label: "PACKAGES", href: "#packages" },
-  { label: "CONTACT US", href: "#contact" },
+  { label: "PAQUETES", href: "#packages" },
+  { label: "CONTACTO", href: "#contact" },
 ] as const;
 
 const WHATSAPP_NUMBER = "59179413052";
 const WHATSAPP_MESSAGE = "Hola yo quiero mi sitio web de turismo, quiero más información";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
-const SECONDARY_LINKS = [{ label: "CALL NOW", href: WHATSAPP_URL }] as const;
+const SECONDARY_LINKS = [{ label: "LLAMAR", href: WHATSAPP_URL }] as const;
 
 function MenuIcon({ open }: { open: boolean }) {
   if (open) {
@@ -111,6 +112,9 @@ export function HeroNavbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <GoogleTranslateWidget variant={navScrolled ? "light" : "dark"} />
+            </li>
           </ul>
 
           {/* Mobile: botón hamburger */}
@@ -173,6 +177,12 @@ export function HeroNavbar() {
               </li>
             ))}
           </ul>
+
+          <hr className="my-4 w-24 border-t border-primary-dark/20" />
+
+          <div className="flex flex-col items-center gap-2">
+            <GoogleTranslateWidget variant="light" className="w-full max-w-[140px]" />
+          </div>
 
           <hr className="my-4 w-24 border-t border-primary-dark/20" />
 

@@ -9,14 +9,14 @@ export type AdventureFeatureItem = {
 export const ADVENTURE_FEATURES: AdventureFeatureItem[] = [
   {
     icon: <ComfortableIcon />,
-    text: "Comfortable Accommodation",
+    text: "Alojamiento cómodo",
   },
   {
     icon: <SafeTransportIcon />,
-    text: "Safe & Reliable Transportation",
+    text: "Transporte seguro y confiable",
   },
   {
     icon: <UniqueRoutesIcon />,
-    text: "Unique Scenic Routes",
+    text: "Rutas escénicas únicas",
   },
 ];
