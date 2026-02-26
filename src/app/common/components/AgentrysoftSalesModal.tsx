@@ -59,14 +59,8 @@ export function AgentrysoftSalesModal() {
           className="w-full max-w-lg overflow-hidden rounded-2xl shadow-2xl transition duration-200 data-closed:opacity-0 data-closed:scale-95"
           style={{ backgroundColor: COLORS.maastricht }}
         >
-          <div className="flex max-h-[90vh] flex-col">
-            <div className="flex shrink-0 items-center justify-between px-6 pt-6">
-              <AgentrysoftLogoSecondary
-                accentColor={COLORS.primary}
-                baseColor={COLORS.foreground}
-                width={180}
-                height={40}
-              />
+          <div className="flex max-h-[90vh] flex-col py-4">
+            <div className="flex shrink-0 items-center justify-end px-6 pt-6">
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -81,11 +75,11 @@ export function AgentrysoftSalesModal() {
             </div>
 
             <div className="overflow-y-auto px-6 py-6" style={{ color: COLORS.foreground }}>
-              <p className="text-center text-lg font-semibold leading-relaxed md:text-xl">
-                ¿Te gustaría que tu agencia tenga una web como esta?
+              <p className="text-center text-xl font-black leading-relaxed md:text-2xl">
+                ¿Te gustaría una web como esta?
               </p>
-              <p className="mt-4 text-center text-sm leading-relaxed opacity-95 md:text-base">
-                Una página profesional atrae más clientes, transmite confianza y te diferencia de la competencia. Tu agencia merece una presencia que imponga respeto desde el primer click.
+              <p className="mt-4 text-center text-lg leading-relaxed opacity-95 md:text-xl">
+                Una página profesional atrae más clientes, transmite confianza y te diferencia de la competencia.
               </p>
               <p className="mt-3 text-center text-sm font-medium" style={{ color: COLORS.accent }}>
                 Contáctanos y te contamos cómo.
@@ -112,10 +106,16 @@ export function AgentrysoftSalesModal() {
             </div>
 
             <div
-              className="shrink-0 px-6 py-3 text-center text-xs font-medium"
-              style={{ color: COLORS.footerGreen }}
+              className="flex items-center justify-center shrink-0 px-6 py-3 text-center text-xs font-medium"
+              style={{ color: COLORS.primary }}
             >
-              Desarrollado por Agentrysoft
+              Desarrollado por:
+              <AgentrysoftLogoSecondary
+                accentColor={COLORS.primary}
+                baseColor={COLORS.foreground}
+                width={100}
+                height={20}
+              />
             </div>
           </div>
         </DialogPanel>

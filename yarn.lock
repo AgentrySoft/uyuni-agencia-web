@@ -4331,6 +4331,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swiper@npm:^12.1.2":
+  version: 12.1.2
+  resolution: "swiper@npm:12.1.2"
+  checksum: 10c0/f2597a67c4d647e367a236735bb7779e2833346b332e6d7b8caf48c6b82da52787959e86f06762983ab82b142958690a0d1b9f6fc5a59170a648949b35cfedd0
+  languageName: node
+  linkType: hard
+
 "tabbable@npm:^6.0.0":
   version: 6.4.0
   resolution: "tabbable@npm:6.4.0"
@@ -4630,6 +4637,7 @@ __metadata:
     next: "npm:16.1.6"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
+    swiper: "npm:^12.1.2"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"
   languageName: unknown

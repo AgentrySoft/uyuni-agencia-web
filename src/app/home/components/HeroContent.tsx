@@ -59,17 +59,17 @@ export function HeroContent() {
       </motion.p>
       <motion.div className="mt-8" variants={item}>
         <ButtonBase
+          href="#tours"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => scrollToHashOnClick(e, "#tours")}
           size="large"
           className="font-rem font-medium !bg-primary !text-cream shadow-black !text-xl"
         >
-          <Link
-            href="#tours"
-            onClick={(e) => scrollToHashOnClick(e, "#tours")}
+          <div
             className="flex items-center gap-2 w-fit"
           >
             <CompassIcon className="h-6 w-6 shrink-0 text-cream md:h-7 md:w-7" />
             Ver rutas
-          </Link>
+          </div>
         </ButtonBase>
       </motion.div>
     </motion.div>

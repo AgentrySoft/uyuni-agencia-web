@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { HeroNavbar } from "./components/HeroNavbar";
 import { HeroContent } from "./components/HeroContent";
 import { HeroSeparator } from "./components/HeroSeparator";
 
@@ -90,8 +89,8 @@ export function HeroBanner() {
   }, [showVideoLayer, createPlayer]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-primary">
-      <div className="relative max-h-[calc(80svh+100px)] min-h-0 overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-cream">
+      <div className="relative max-h-[calc(80svh+100px)] min-h-0 overflow-hidden z-[1]">
         {/* Imagen de fondo: zoom out + fade in */}
         <motion.div
           className="absolute inset-0 z-0"
@@ -109,10 +108,13 @@ export function HeroBanner() {
           />
         </motion.div>
 
+        {/* Overlay blanco visible en todo momento */}
+        <div className="absolute inset-0 z-[1] bg-white/50 pointer-events-none" aria-hidden />
+
         {/* Capa del video: zoom out + fade in solo cuando el video está reproduciendo */}
         {showVideoLayer && (
           <motion.div
-            className="absolute inset-0 z-[1]"
+            className="absolute inset-0 z-[2]"
             initial={{ opacity: 0, scale: 1.12 }}
             animate={{
               opacity: videoPlaying ? 1 : 0,
@@ -127,11 +129,9 @@ export function HeroBanner() {
                 style={COVER_STYLE}
               />
             </div>
-            <div className="absolute inset-0 pointer-events-none" />
+            <div className="absolute inset-0 bg-white/50 pointer-events-none" />
           </motion.div>
         )}
-
-        <HeroNavbar />
 
         <div className="relative z-10 flex min-h-[70svh] flex-col items-center justify-center pb-24 pt-32 md:pb-32 md:pt-40">
           <HeroContent />
