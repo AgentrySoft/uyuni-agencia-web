@@ -11,7 +11,7 @@ type CardServiceProps = {
 };
 
 const CONTENT_WRAPPER_CLASS =
-  "flex shrink-0 flex-col border-t border-primary-dark/10 bg-card-bg px-5 py-4 md:px-6 md:py-5";
+  "flex min-h-0 flex-1 flex-col border-t border-primary-dark/10 bg-card-bg px-5 py-4 md:px-6 md:py-5";
 
 export function CardService({ children, className }: CardServiceProps) {
   const childArray = Children.toArray(children);
@@ -20,7 +20,7 @@ export function CardService({ children, className }: CardServiceProps) {
 
   return (
     <article
-      className={`flex max-h-[500px] flex-col overflow-hidden rounded-2xl bg-card-bg shadow-lg ${className ?? ""}`}
+      className={`flex max-h-[600px] flex-col overflow-hidden rounded-2xl bg-card-bg shadow-lg md:max-h-[500px] ${className ?? ""}`}
     >
       {first}
       {rest.length > 0 ? <div className={CONTENT_WRAPPER_CLASS}>{rest}</div> : null}

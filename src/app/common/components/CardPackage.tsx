@@ -81,7 +81,7 @@ type CardPackageTitleProps = {
 export function CardPackageTitle({ children, className }: CardPackageTitleProps) {
   return (
     <h3
-      className={`font-rem text-xl font-extrabold text-primary sm:text-2xl md:text-3xl ${className ?? ""}`}
+      className={`line-clamp-2 font-rem text-xl font-extrabold text-primary sm:text-2xl md:text-3xl ${className ?? ""}`}
     >
       {children}
     </h3>

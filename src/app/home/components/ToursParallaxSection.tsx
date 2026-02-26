@@ -53,7 +53,7 @@ export function ToursParallaxSection() {
 
       {/* Bloque: texto centrado con scroll reveal */}
       <motion.div
-        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-20 pt-40 md:px-12 md:py-20 lg:px-20 !pt-40"
+        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-16 md:px-12 md:py-20 lg:px-20 !pt-40"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -71,7 +71,7 @@ export function ToursParallaxSection() {
 
       {/* Cards con stagger espectacular */}
       <motion.div
-        className="relative z-10 mx-auto flex w-[80%] max-w-[900px] flex-col gap-8 pb-20 pt-4 min-[1200px]:w-full"
+        className="relative z-10 mx-auto flex w-[80%] max-w-[900px] flex-col gap-8 pb-0 md:pb-20 pt-4 min-[1200px]:w-full"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -95,12 +95,12 @@ export function ToursParallaxSection() {
             >
               <CardService className="w-full">
                 <CardServiceImage src={image} alt={imageAlt} icon={icon} />
-                <div className="flex flex-col gap-2 justify-center items-center md:flex-row">
-                  <div className="flex flex-col gap-2">
+                <div className="flex flex-1 min-h-0 flex-col gap-2 justify-center items-center md:flex-row">
+                  <div className="flex min-h-0 flex-col gap-2">
                     <CardServiceTitle>{title}</CardServiceTitle>
                     <CardServiceDescription>{description}</CardServiceDescription>
                   </div>
-                  <div className="shrink-0">
+                  <div className="mt-auto shrink-0 md:mt-0">
                     <CardServiceAction>
                       <ButtonBase
                         size="large"

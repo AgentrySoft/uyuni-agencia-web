@@ -3,6 +3,12 @@
 import { useEffect, useState, useRef } from "react";
 import classNames from "classnames";
 
+/** Altura aproximada por ítem del dropdown (py-2.5 + texto) */
+const ITEM_HEIGHT_PX = 44;
+const VISIBLE_ITEMS = 4;
+const DROPDOWN_MAX_HEIGHT_PX = ITEM_HEIGHT_PX * VISIBLE_ITEMS;
+const MIN_SPACE_BELOW_PX = DROPDOWN_MAX_HEIGHT_PX + 16; // + margen
+
 declare global {
   interface Window {
     google?: {
@@ -42,13 +48,35 @@ type GoogleTranslateWidgetProps = {
 export function GoogleTranslateWidget({ variant = "dark", className }: GoogleTranslateWidgetProps) {
   const [currentLang, setCurrentLang] = useState<LangCode>("es");
   const [isOpen, setIsOpen] = useState(false);
+  const [openUpward, setOpenUpward] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const initRef = useRef(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (containerRef.current && !containerRef.current.contains(target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || typeof window === "undefined" || !triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    setOpenUpward(spaceBelow < MIN_SPACE_BELOW_PX);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
@@ -176,8 +204,9 @@ export function GoogleTranslateWidget({ variant = "dark", className }: GoogleTra
   }
 
   return (
-    <div className={classNames("relative notranslate", className)}>
+    <div ref={containerRef} className={classNames("relative notranslate", className)}>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => !isLoading && setIsOpen(!isOpen)}
         disabled={isLoading}
@@ -213,15 +242,16 @@ export function GoogleTranslateWidget({ variant = "dark", className }: GoogleTra
       {isOpen && !isLoading && (
         <>
           <div
-            className="fixed inset-0 z-10"
-            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 z-10 pointer-events-none"
             aria-hidden
           />
           <div
             className={classNames(
-              "absolute right-0 top-full z-20 mt-2 w-36 rounded-lg border shadow-lg notranslate",
+              "absolute right-0 z-20 w-36 rounded-lg border shadow-lg notranslate overflow-y-auto",
+              openUpward ? "bottom-full mb-2" : "top-full mt-2",
               isScrolled ? "border-primary-dark/10 bg-cream" : "border-white/20 bg-cream/95 backdrop-blur"
             )}
+            style={{ maxHeight: DROPDOWN_MAX_HEIGHT_PX }}
           >
             {LANGUAGES.map(({ code, label, flag }) => (
               <button

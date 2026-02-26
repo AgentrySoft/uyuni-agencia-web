@@ -18,7 +18,7 @@ const WHATSAPP_NUMBER = "59179413052";
 const WHATSAPP_MESSAGE = "Hola yo quiero mi sitio web de turismo, quiero más información";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
-const SECONDARY_LINKS = [{ label: "LLAMAR", href: WHATSAPP_URL }] as const;
+const SECONDARY_LINKS = [{ label: "RESERVAR", href: WHATSAPP_URL }] as const;
 
 function MenuIcon({ open }: { open: boolean }) {
   if (open) {
@@ -64,9 +64,9 @@ export function HeroNavbar() {
     <>
       <nav
         className={classNames(
-          "fixed left-0 right-0 top-0 z-30 w-full px-6 py-6 backdrop-blur-md transition-[background-color,box-shadow] duration-300 md:px-12",
+          "fixed left-0 right-0 top-0 z-50 w-full px-6 py-6 backdrop-blur-md transition-[background-color,box-shadow] duration-300 md:px-12",
           navScrolled
-            ? "bg-cream/75 shadow-md shadow-primary-dark/10"
+            ? "bg-cream/90 shadow-md shadow-primary-dark/10"
             : "bg-cream/5"
         )}
       >
@@ -75,7 +75,7 @@ export function HeroNavbar() {
             href="/"
             className={classNames(
               "font-rem text-lg font-extrabold uppercase tracking-wide transition-colors duration-300",
-              navScrolled ? "text-primary-dark" : "text-white"
+              navScrolled ? "text-primary-dark" : "text-primary-dark"
             )}
           >
             MI AGENCIA
@@ -90,7 +90,7 @@ export function HeroNavbar() {
                   onClick={(e) => scrollToHashOnClick(e, href)}
                   className={classNames(
                     "font-rem text-sm font-semibold uppercase tracking-wide transition-colors duration-300 hover:opacity-90 md:text-base",
-                    navScrolled ? "text-primary" : "text-white"
+                    navScrolled ? "text-primary" : "text-black"
                   )}
                 >
                   {label}
@@ -104,8 +104,8 @@ export function HeroNavbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={classNames(
-                    "font-rem text-sm font-semibold uppercase tracking-wide transition-colors duration-300 hover:opacity-90 md:text-base",
-                    navScrolled ? "text-primary-dark" : "text-cream"
+                    "font-rem text-sm font-semibold uppercase tracking-wide transition-colors duration-300 hover:opacity-90 md:text-base underline",
+                    navScrolled ? "text-primary-dark" : "text-primary-dark"
                   )}
                 >
                   {label}
@@ -113,7 +113,7 @@ export function HeroNavbar() {
               </li>
             ))}
             <li>
-              <GoogleTranslateWidget variant={navScrolled ? "light" : "dark"} />
+              <GoogleTranslateWidget variant="light" />
             </li>
           </ul>
 
@@ -123,7 +123,7 @@ export function HeroNavbar() {
             onClick={() => setIsMenuOpen((v) => !v)}
             className={classNames(
               "flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 hover:opacity-90 md:hidden",
-              navScrolled ? "text-primary-dark" : "text-cream"
+              navScrolled ? "text-primary-dark" : "text-primary"
             )}
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={isMenuOpen}

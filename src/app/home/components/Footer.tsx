@@ -25,7 +25,7 @@ const itemReveal = {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-cream px-6 py-12 md:px-12 lg:px-20">
+    <footer className="relative w-full bg-cream px-6 py-12 md:px-12 lg:px-20">
       <motion.div
         className="mx-auto max-w-6xl"
         initial="hidden"

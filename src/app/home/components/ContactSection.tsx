@@ -51,14 +51,14 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-[80vh] w-full flex-col items-center justify-start overflow-hidden bg-cover bg-no-repeat px-6 py-16 md:py-20"
+      className="relative flex min-h-[80vh] w-full flex-col items-center justify-start overflow-hidden bg-cover bg-no-repeat px-6 py-16 md:py-32"
       style={{
         backgroundImage: "url(/images/contact.jpg)",
         backgroundPosition: "right center",
       }}
     >
       <motion.h2
-        className="relative z-10 mb-10 text-center font-inter text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-[64px]"
+        className="relative z-10 mb-32 text-center font-inter text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-[64px]"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
