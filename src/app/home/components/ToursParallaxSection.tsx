@@ -70,7 +70,7 @@ export function ToursParallaxSection() {
 
       {/* Bloque parallax: texto centrado con scroll reveal (z-10 sobre la capa en svh) */}
       <motion.div
-        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-20 pt-40 md:px-12 md:py-20 lg:px-20"
+        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-20 md:px-12 md:py-20 lg:px-20 !pt-40"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
