@@ -58,7 +58,7 @@ export function ContactSection() {
       }}
     >
       <motion.h2
-        className="relative z-10 mb-10 text-center font-inter text-[64px] font-extrabold text-white"
+        className="relative z-10 mb-10 text-center font-inter text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-[64px]"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -81,10 +81,10 @@ export function ContactSection() {
           {/* Título + descripción + icono */}
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
-              <h3 className="font-inter text-[32px] font-extrabold text-[#7E502E]">
+              <h3 className="font-inter text-xl font-extrabold text-[#7E502E] sm:text-2xl md:text-[32px]">
                 Deja tus datos
               </h3>
-              <p className="mt-1 font-inter text-2xl font-extrabold text-[#937A5E]">
+              <p className="mt-1 font-inter text-lg font-extrabold text-[#937A5E] sm:text-xl md:text-2xl">
                 y te responderemos lo antes posible.
               </p>
             </div>

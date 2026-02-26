@@ -8,4 +8,5 @@ export { ContactSection } from "./ContactSection";
 export { Footer } from "./Footer";
 export { OurPackagesSection } from "./OurPackagesSection";
 export { SectionSeparator } from "./SectionSeparator";
+export { ToursPackagesParallax } from "./ToursPackagesParallax";
 export { ToursParallaxSection } from "./ToursParallaxSection";

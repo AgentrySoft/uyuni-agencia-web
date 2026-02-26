@@ -44,9 +44,7 @@ const cardReveal = {
 };
 
 /**
- * Sección "Our Packages" con fondo parallax (uyuni-people-jump-bo.jpg),
- * overlay con gradiente, título y cards con flex wrap (max 400px por card;
- * móvil 80% ancho; pantallas grandes 2 o 3 por fila).
+ * Sección "Our Packages" con fondo fijo vía Motion.
  */
 function PackageModalBody({ content }: { content: PackageModalContent }) {
   return (
@@ -81,32 +79,15 @@ export function OurPackagesSection() {
     packageModalSlug != null ? PACKAGE_CONTENT[packageModalSlug as keyof typeof PACKAGE_CONTENT] : null;
 
   return (
-    <section id="packages" className="relative w-full overflow-hidden">
-      {/* Capa de fondo con altura en svh (estable al mostrar/ocultar barra de Chrome); sticky = parallax contenido en la sección */}
-      <div className="sticky top-0 z-0 h-[200svh] w-full">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url(/images/uyuni-people-jump-bo.jpg)" }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.52) 50%)",
-          }}
-          aria-hidden
-        />
-      </div>
-      {/* Contenido superpuesto sobre la capa sticky */}
-      <div className="relative z-10 -mt-[200svh] min-h-[50svh] px-6 py-16 md:px-12 lg:px-20">
+    <section id="packages" className="relative z-10 w-full overflow-hidden">
+      <div className="relative z-10 min-h-[50svh] px-6 py-16 md:px-12 lg:px-20">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportEarlier}
           variants={titleReveal}
         >
-          <h2 className="text-center font-inter text-[64px] font-extrabold text-white">
+          <h2 className="text-center font-inter text-3xl font-extrabold text-white sm:text-4xl md:text-5xl lg:text-[64px]">
             Nuestros paquetes
           </h2>
         </motion.div>

@@ -34,7 +34,7 @@ const cardVariants = {
 
 export function AdventureFeaturesSection() {
   return (
-    <section id="about" className="relative w-full bg-cream">
+    <section id="about" className="relative w-full bg-cream z-[1]">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24 !pb-0">
         <motion.div
           initial="hidden"

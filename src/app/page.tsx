@@ -8,6 +8,7 @@ import {
   Footer,
   HeroBanner,
   OurPackagesSection,
+  ToursPackagesParallax,
   ToursParallaxSection,
 } from "./home";
 
@@ -19,8 +20,10 @@ export default function Home() {
       <AgentrysoftSalesModal />
       <HeroBanner />
       <AdventureFeaturesSection />
-      <ToursParallaxSection />
-      <OurPackagesSection />
+      <ToursPackagesParallax>
+        <ToursParallaxSection />
+        <OurPackagesSection />
+      </ToursPackagesParallax>
       <ContactSection />
       <Footer />
       <ButtonUp />

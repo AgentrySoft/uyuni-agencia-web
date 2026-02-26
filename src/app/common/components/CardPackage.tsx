@@ -81,7 +81,7 @@ type CardPackageTitleProps = {
 export function CardPackageTitle({ children, className }: CardPackageTitleProps) {
   return (
     <h3
-      className={`font-rem text-3xl font-extrabold text-primary ${className ?? ""}`}
+      className={`font-rem text-xl font-extrabold text-primary sm:text-2xl md:text-3xl ${className ?? ""}`}
     >
       {children}
     </h3>
@@ -100,7 +100,7 @@ type CardPackageDestinationProps = {
 export function CardPackageDestination({ children, className }: CardPackageDestinationProps) {
   return (
     <p
-      className={`font-inter text-xl font-semibold text-description ${className ?? ""}`}
+      className={`font-inter text-sm font-semibold text-description sm:text-base md:text-lg ${className ?? ""}`}
     >
       {children}
     </p>

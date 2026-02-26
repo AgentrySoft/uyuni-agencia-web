@@ -39,8 +39,8 @@ const cardReveal = {
 };
 
 /**
- * Sección con fondo parallax (background-attachment: fixed), overlay con gradiente,
- * texto promocional y 3 cards de servicios. Imagen: uyuni-tren-bo.jpg
+ * Sección de servicios (tours). El fondo fijo y el crossfade con paquetes
+ * se gestionan en ToursPackagesParallax.
  */
 export function ToursParallaxSection() {
   const [serviceModalSlug, setServiceModalSlug] = useState<string | null>(null);
@@ -48,29 +48,12 @@ export function ToursParallaxSection() {
     serviceModalSlug != null ? SERVICE_MODAL_CONTENT[serviceModalSlug] : null;
 
   return (
-    <section id="tours" className="relative w-full overflow-hidden">
-      {/* Capa de fondo con altura en svh (estable al mostrar/ocultar barra de Chrome); sticky = parallax contenido en la sección */}
-      <div className="sticky top-0 z-0 h-[220svh] w-full">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url(/images/uyuni-tren-bo.jpg)" }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.52) 50%)",
-          }}
-          aria-hidden
-        />
-      </div>
-      {/* Contenido superpuesto sobre la capa sticky */}
-      <div className="relative z-10 -mt-[220svh]">
+    <section id="tours" className="relative z-10 w-full overflow-hidden">
+      <div className="relative z-10">
 
-      {/* Bloque parallax: texto centrado con scroll reveal (z-10 sobre la capa en svh) */}
+      {/* Bloque: texto centrado con scroll reveal */}
       <motion.div
-        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-20 md:px-12 md:py-20 lg:px-20 !pt-40"
+        className="relative z-10 flex min-h-[40svh] flex-shrink-0 items-center justify-center px-6 py-20 pt-40 md:px-12 md:py-20 lg:px-20 !pt-40"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}

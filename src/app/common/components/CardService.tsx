@@ -75,7 +75,7 @@ type CardServiceTitleProps = {
 export function CardServiceTitle({ children, className }: CardServiceTitleProps) {
   return (
     <h3
-      className={`font-rem text-lg font-extrabold text-primary md:text-4xl ${className ?? ""}`}
+      className={`font-rem text-xl font-extrabold text-primary sm:text-2xl md:text-3xl ${className ?? ""}`}
     >
       {children}
     </h3>
@@ -94,7 +94,7 @@ type CardServiceDescriptionProps = {
 export function CardServiceDescription({ children, className }: CardServiceDescriptionProps) {
   return (
     <p
-      className={`mt-1.5 line-clamp-2 font-rem text-sm font-semibold text-description md:text-base ${className ?? ""}`}
+      className={`mt-1.5 line-clamp-2 font-rem text-sm font-semibold text-description sm:text-base md:text-lg ${className ?? ""}`}
     >
       {children}
     </p>
