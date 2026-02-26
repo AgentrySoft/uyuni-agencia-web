@@ -20,7 +20,7 @@ import {
 } from "@/app/home/content/package-modal-content";
 import {
   staggerContainerFast,
-  viewportOnce,
+  viewportEarlier,
 } from "@/app/common/lib/motion-variants";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -81,28 +81,29 @@ export function OurPackagesSection() {
     packageModalSlug != null ? PACKAGE_CONTENT[packageModalSlug as keyof typeof PACKAGE_CONTENT] : null;
 
   return (
-    <section
-      id="packages"
-      className="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: "url(/images/uyuni-people-jump-bo.jpg)",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Overlay con gradiente */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.52) 50%)",
-        }}
-      />
-
-      <div className="relative z-10 px-6 py-16 md:px-12 lg:px-20">
+    <section id="packages" className="relative w-full overflow-hidden">
+      {/* Capa de fondo con altura en svh (estable al mostrar/ocultar barra de Chrome); sticky = parallax contenido en la sección */}
+      <div className="sticky top-0 z-0 h-[200svh] w-full">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url(/images/uyuni-people-jump-bo.jpg)" }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.52) 50%)",
+          }}
+          aria-hidden
+        />
+      </div>
+      {/* Contenido superpuesto sobre la capa sticky */}
+      <div className="relative z-10 -mt-[200svh] min-h-[50svh] px-6 py-16 md:px-12 lg:px-20">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={viewportOnce}
+          viewport={viewportEarlier}
           variants={titleReveal}
         >
           <h2 className="text-center font-inter text-[64px] font-extrabold text-white">
@@ -115,7 +116,7 @@ export function OurPackagesSection() {
           className="mx-auto mt-12 flex max-w-6xl flex-wrap justify-center gap-8 lg:gap-10"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportOnce}
+          viewport={viewportEarlier}
           variants={staggerContainerFast}
         >
           {OUR_PACKAGES.map(

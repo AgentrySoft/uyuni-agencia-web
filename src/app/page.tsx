@@ -1,3 +1,4 @@
+import { AgentrysoftSalesModal } from "@/app/common/components/AgentrysoftSalesModal";
 import { ButtonUp } from "@/app/common/components/ButtonUp";
 import { ScrollProgressBar } from "@/app/common/components/ScrollProgressBar";
 import { ScrollToHash } from "@/app/common/components/ScrollToHash";
@@ -15,6 +16,7 @@ export default function Home() {
     <div id="top" className="min-h-screen bg-cream">
       <ScrollToHash />
       <ScrollProgressBar />
+      <AgentrysoftSalesModal />
       <HeroBanner />
       <AdventureFeaturesSection />
       <ToursParallaxSection />
