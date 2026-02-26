@@ -23,6 +23,7 @@ import {
   type PackageModalContent,
 } from "@/app/home/content/package-modal-content";
 import { viewportEarlier } from "@/app/common/lib/motion-variants";
+import { BoliviaRoutesMap } from "@/app/home/components/BoliviaRoutesMap";
 
 const PACKAGE_VIDEO_ID = "jXqzDf_D1xQ";
 
@@ -343,6 +344,9 @@ export function OurPackagesSection() {
             </Swiper>
           </div>
         </motion.div>
+      </div>
+      <div className="relative z-10 mt-8">
+        <BoliviaRoutesMap />
       </div>
 
       {packageContent != null && (

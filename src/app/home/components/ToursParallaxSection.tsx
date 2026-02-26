@@ -71,7 +71,7 @@ export function ToursParallaxSection() {
 
       {/* Cards con stagger espectacular */}
       <motion.div
-        className="relative z-10 mx-auto flex w-[80%] max-w-[900px] flex-col gap-8 pb-0 md:pb-20 pt-4 min-[1200px]:w-full"
+        className="relative z-10 mx-auto flex w-[80%] max-w-[900px] flex-col gap-8 pb-0 lg:pb-20 pt-4 min-[1200px]:w-full"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
