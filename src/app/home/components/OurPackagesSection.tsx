@@ -27,6 +27,12 @@ import { BoliviaRoutesMap } from "@/app/home/components/BoliviaRoutesMap";
 
 const PACKAGE_VIDEO_ID = "jXqzDf_D1xQ";
 
+const WHATSAPP_NUMBER = "59179413052";
+const getReservarWhatsAppUrl = (packageTitle: string) => {
+  const message = `Hola, me gustaría reservar el paquete "${packageTitle}". ¿Me pueden dar más información?`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+};
+
 /** Carga el script de la YouTube IFrame API (misma forma que HeroBanner) */
 function loadYouTubeAPI(): Promise<void> {
   return new Promise((resolve) => {
@@ -145,7 +151,7 @@ function PackageVideoOverlay({ title, onClose }: { title: string; onClose: () =>
           className="flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 shadow-lg ring-2 ring-primary/40 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           aria-label="Cerrar video"
         >
-          <span className="font-rem text-sm font-bold text-primary">OK</span>
+          <span className="notranslate font-rem text-sm font-bold text-primary">OK</span>
           <CheckIcon className="h-5 w-5 text-primary" />
         </button>
       </div>
@@ -199,7 +205,7 @@ function PackageCardWithVideo({
             className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 shadow-lg ring-2 ring-primary/40 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             aria-label="Ver video"
           >
-            <span className="font-rem text-sm font-bold text-primary">Shot</span>
+            <span className="notranslate font-rem text-sm font-bold text-primary">Shot</span>
             <PlayIcon className="h-5 w-5 text-primary" />
           </button>
         </div>
@@ -258,6 +264,16 @@ function PackageModalBody({ content }: { content: PackageModalContent }) {
           Duración: {content.duration} · Destino: {content.destination}
         </p>
         <PackageTimeline key={content.title} days={content.days} />
+      </div>
+      <div className="flex justify-center pt-2">
+        <ButtonBase
+          href={getReservarWhatsAppUrl(content.title)}
+          external
+          size="medium"
+          className="font-rem font-medium !bg-primary !text-cream shadow-black !text-lg"
+        >
+          Reservar
+        </ButtonBase>
       </div>
     </div>
   );

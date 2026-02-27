@@ -4,6 +4,7 @@ import { useCallback, useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import { viewportEarlier } from "@/app/common/lib/motion-variants";
 import styles from "./BoliviaRoutesMap.module.css";
+import classNames from "classnames";
 
 /** Vista predefinida al seleccionar una ruta (pan en px, zoom 1 = 100%) */
 const ROUTE_VIEW_PRESETS: Record<string, { panX: number; panY: number; zoom: number }> = {
@@ -47,8 +48,8 @@ function MapPinIcon({ className }: { className?: string }) {
   );
 }
 
-const ZOOM_MIN = 1;
-const ZOOM_MAX = 2.5;
+const ZOOM_MIN = 1.5;
+const ZOOM_MAX = 3;
 const ZOOM_STEP = 0.25;
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -62,38 +63,62 @@ const revealVariants = {
 };
 
 export function BoliviaRoutesMap() {
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(ZOOM_MIN);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragStart = useRef<{ x: number; y: number; panX: number; panY: number } | null>(null);
   const zoomRef = useRef(zoom);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     zoomRef.current = zoom;
   }, [zoom]);
 
+  /** Límites de pan según viewport y zoom (transform-origin: center, así que el rango es simétrico) */
+  const clampPanForZoom = useCallback((p: { x: number; y: number }, z: number) => {
+    const el = viewportRef.current;
+    if (!el || z <= 1) return { x: 0, y: 0 };
+    const vw = el.clientWidth;
+    const vh = el.clientHeight;
+    const minX = (vw * (1 - z)) / 2;
+    const maxX = (vw * (z - 1)) / 2;
+    const minY = (vh * (1 - z)) / 2;
+    const maxY = (vh * (z - 1)) / 2;
+    return {
+      x: Math.max(minX, Math.min(maxX, p.x)),
+      y: Math.max(minY, Math.min(maxY, p.y)),
+    };
+  }, []);
+
   const zoomIn = useCallback(() => {
-    setZoom((z) => Math.min(ZOOM_MAX, z + ZOOM_STEP));
-  }, []);
+    const next = Math.min(ZOOM_MAX, zoomRef.current + ZOOM_STEP);
+    setZoom(next);
+    setPan((p) => clampPanForZoom(p, next));
+  }, [clampPanForZoom]);
   const zoomOut = useCallback(() => {
-    setZoom((z) => Math.max(ZOOM_MIN, z - ZOOM_STEP));
-  }, []);
+    const next = Math.max(ZOOM_MIN, zoomRef.current - ZOOM_STEP);
+    setZoom(next);
+    setPan((p) => clampPanForZoom(p, next));
+  }, [clampPanForZoom]);
   const resetZoom = useCallback(() => {
-    setZoom(1);
+    setZoom(ZOOM_MIN);
     setPan({ x: 0, y: 0 });
   }, []);
 
-  const handleWheel = useCallback((e: WheelEvent) => {
-    e.preventDefault();
-    const current = zoomRef.current;
-    const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
-    let next = current + delta;
-    if (next < ZOOM_MIN) next = ZOOM_MIN;
-    if (next > ZOOM_MAX) next = ZOOM_MAX;
-    setZoom(next);
-  }, []);
+  const handleWheel = useCallback(
+    (e: WheelEvent) => {
+      e.preventDefault();
+      const current = zoomRef.current;
+      const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
+      let next = current + delta;
+      if (next < ZOOM_MIN) next = ZOOM_MIN;
+      if (next > ZOOM_MAX) next = ZOOM_MAX;
+      setZoom(next);
+      setPan((p) => clampPanForZoom(p, next));
+    },
+    [clampPanForZoom]
+  );
 
-  const viewportRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = viewportRef.current;
     if (!el) return;
@@ -113,15 +138,24 @@ export function BoliviaRoutesMap() {
     };
   }, [pan.x, pan.y]);
 
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (dragStart.current == null) return;
-    const dx = e.clientX - dragStart.current.x;
-    const dy = e.clientY - dragStart.current.y;
-    setPan({
-      x: dragStart.current.panX + dx,
-      y: dragStart.current.panY + dy,
-    });
-  }, []);
+  const clampPan = useCallback(
+    (p: { x: number; y: number }) => clampPanForZoom(p, zoomRef.current),
+    [clampPanForZoom]
+  );
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (dragStart.current == null) return;
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      const next = {
+        x: dragStart.current.panX + dx,
+        y: dragStart.current.panY + dy,
+      };
+      setPan(clampPan(next));
+    },
+    [clampPan]
+  );
 
   const handlePointerUp = useCallback((e: React.PointerEvent) => {
     if (e.button !== 0) return;
@@ -148,12 +182,12 @@ export function BoliviaRoutesMap() {
 
       const view = ROUTE_VIEW_PRESETS[label];
       if (view) {
-        setPan({ x: view.panX, y: view.panY });
         const zoomClamped = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, view.zoom));
         setZoom(zoomClamped);
+        setPan(clampPanForZoom({ x: view.panX, y: view.panY }, zoomClamped));
       }
     };
-  }, []);
+  }, [clampPanForZoom]);
 
   const pathClassName = () => styles.rutaEstatica;
 
@@ -186,55 +220,17 @@ export function BoliviaRoutesMap() {
               data-map-btn
               onClick={activarRuta([], "")}
             >
-              Limpiar
+              Restablecer
             </button>
           </div>
         </div>
         <div className={styles.mapPanel}>
-          <div className={styles.mapContainer}>
-            <div className={styles.zoomControls}>
-              <div className={styles.zoomIndicator}>
-                <div
-                  className={styles.zoomIndicatorBar}
-                  style={{
-                    width: `${((zoom - ZOOM_MIN) / (ZOOM_MAX - ZOOM_MIN)) * 100}%`,
-                  }}
-                />
-              </div>
-              <span className={styles.zoomLevel} aria-live="polite">
-                {Math.round(zoom * 100)}%
-              </span>
-              <span className={styles.zoomRange}>
-                {Math.round(ZOOM_MIN * 100)}–{Math.round(ZOOM_MAX * 100)}%
-              </span>
-              <button
-                type="button"
-                className={styles.zoomBtn}
-                onClick={zoomIn}
-                disabled={zoom >= ZOOM_MAX}
-                aria-label="Acercar"
-              >
-                +
-              </button>
-              <button
-                type="button"
-                className={styles.zoomBtn}
-                onClick={zoomOut}
-                disabled={zoom <= ZOOM_MIN}
-                aria-label="Alejar"
-              >
-                −
-              </button>
-              <button
-                type="button"
-                className={styles.zoomBtnReset}
-                onClick={resetZoom}
-                aria-label="Restablecer zoom"
-                title="Restablecer zoom"
-              >
-                ⟲
-              </button>
-            </div>
+          <div 
+            className={classNames(
+              styles.mapContainer,
+              "bg-[#d9d9d9]"
+            )}
+          >
             <div
               ref={viewportRef}
               className={styles.mapViewport}
@@ -302,6 +298,48 @@ export function BoliviaRoutesMap() {
               </g>
             </svg>
               </div>
+            </div>
+            <div className={styles.zoomControls}>
+              <div className={styles.zoomIndicator}>
+                <div
+                  className={styles.zoomIndicatorBar}
+                  style={{
+                    width: `${((zoom - ZOOM_MIN) / (ZOOM_MAX - ZOOM_MIN)) * 100}%`,
+                  }}
+                />
+              </div>
+              <span className={styles.zoomLevel} aria-live="polite">
+                {/* {zoom/ZOOM_MAX*100} */}
+                {Math.round(((zoom-ZOOM_MIN)/ZOOM_MIN)*100)}%
+                {/* {Math.round(zoom * 100)}% */}
+              </span>
+              <button
+                type="button"
+                className={styles.zoomBtn}
+                onClick={zoomIn}
+                disabled={zoom >= ZOOM_MAX}
+                aria-label="Acercar"
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className={styles.zoomBtn}
+                onClick={zoomOut}
+                disabled={zoom <= ZOOM_MIN}
+                aria-label="Alejar"
+              >
+                −
+              </button>
+              <button
+                type="button"
+                className={styles.zoomBtnReset}
+                onClick={resetZoom}
+                aria-label="Restablecer zoom"
+                title="Restablecer zoom"
+              >
+                ⟲
+              </button>
             </div>
           </div>
         </div>
